@@ -4,9 +4,6 @@ from crewai import Crew, Process
 from tasks import industry_research_task, use_case_generation_task, resource_collection_task
 from agents import industry_research_agent, use_case_generator_agent, resource_asset_collector_agent
 
-GROQ_API_KEY="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"
-
-
 
 # Assemble the Crew with the defined agents and tasks
 research_and_use_case_crew = Crew(
@@ -30,7 +27,6 @@ if st.button("Generate Reports"):
         with st.spinner("Gathering information..."):
             result = research_and_use_case_crew.kickoff(inputs={"company": company_name, "industry_name":industry})
             time.sleep(2)
-        st.write(f"Market Research and AI Use Case for {company_name} in the {industry} industry")
         
         
         st.header("Market Report")
@@ -42,7 +38,7 @@ if st.button("Generate Reports"):
                 file_name="Market_report.md",
                 mime="text/markdown"
             )       
-            
+
         st.header("AI Use Cases Report")
         with open("use_cases_report.md", "r") as file:
             st.markdown(file.read())
